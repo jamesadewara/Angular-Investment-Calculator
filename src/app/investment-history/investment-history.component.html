@@ -1,0 +1,47 @@
+<div class="history-header">
+  <h2>Investment Calculations History</h2>
+  <div class="search-nd-del">
+    <input
+      placeholder="History Search"
+      id="history-query"
+      name="history-query"
+      [(ngModel)]="queries"
+    />
+    <button (click)="search()">Search</button>
+  </div>
+</div>
+@if(history.length === 0){
+<p style="text-align: center">History is currently empty</p>
+} @else {
+<section>
+  @for (hist of history; track hist.date){
+  <li class="listile">
+    {{ hist.date | date }}
+    <b><button (click)="delHistoryData(hist.id.toString())">DEL</button></b>
+  </li>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Year</th>
+        <th>Investment Value</th>
+        <th>Interest (Year)</th>
+        <th>Total Intereset</th>
+        <th>Invested Capital</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (result of hist.data; track result.year){
+      <tr>
+        <td>{{ result.year }}</td>
+        <td>{{ result.annualInvestment | currency : "USD" }}</td>
+        <td>{{ result.interest | currency }}</td>
+        <td>{{ result.totalInterest | currency }}</td>
+        <td>{{ result.valueEndOfYear | currency }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  }
+</section>
+}

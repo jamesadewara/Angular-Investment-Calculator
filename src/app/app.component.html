@@ -1,5 +1,9 @@
 <main>
-  <app-header/>
-  <app-user-input (calculate)="onCalculateInvestmentResults($event)"/>
-  <app-investment-results [results]="resultsData"/>
+  <section>
+    <app-header/>
+    <app-user-input (calculate)="onCalculateInvestmentResults($event)"/>
+  </section>
+  <section>
+    <app-investment-history/>
+  </section>
 </main>

@@ -1,13 +1,24 @@
 import { Injectable } from "@angular/core";
-import { type AnnualDataModel, type UserInputModel } from "./user-input.model";
+import { AnnualDataHistoryModel, type AnnualDataModel, type UserInputModel } from "./user-input.model";
 
 @Injectable({ providedIn: 'root' })
 export class UserInputService {
     private annualData: AnnualDataModel[] = [];
+    private annualDataHistory: AnnualDataHistoryModel[] = [];
+
+    constructor() {
+        const annualDataHistory = localStorage.getItem('annualDataHistory');
+        if (annualDataHistory) {
+            this.annualDataHistory =
+                JSON.parse(annualDataHistory);
+        }
+    }
 
     onCalculateResults(
         data: UserInputModel
     ) {
+
+
         const { initialInvestment, annualInvestment, expectedReturn, duration } = data;
 
         let investmentValue = initialInvestment;
@@ -29,11 +40,27 @@ export class UserInputService {
                     totalAmountInvested: initialInvestment + annualInvestment * year,
                 } as AnnualDataModel);
         }
-        return this.annualData;
+
+        this.annualDataHistory.unshift({
+            id: this.annualDataHistory.length + 1,
+            date: new Date(),
+            data: this.annualData
+        } as AnnualDataHistoryModel);
+        this.saveAnnualDataHistory();
+        this.annualData = [];
+
     }
 
-    annualDataValue() {
-        return this.annualData as AnnualDataModel[];
+    annualHisotryDataValue() {
+        return this.annualDataHistory as AnnualDataHistoryModel[];
     }
 
+    removeHistoryData(id: string) {
+        this.annualDataHistory = this.annualDataHistory.filter((history) => history.id.toString() != id);
+        this.saveAnnualDataHistory();
+    }
+
+    private saveAnnualDataHistory() {
+        localStorage.setItem('annualDataHistory', JSON.stringify(this.annualDataHistory));
+    }
 }

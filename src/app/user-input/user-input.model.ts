@@ -13,3 +13,9 @@ export interface AnnualDataModel {
     totalInterest: number;
     totalAmountInvested: number;
 }
+
+export interface AnnualDataHistoryModel{
+    id: number;
+    date: Date;
+    data: AnnualDataModel[];
+}

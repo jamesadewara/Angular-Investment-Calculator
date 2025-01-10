@@ -1,0 +1,86 @@
+section {
+  overflow-y: scroll;
+  padding: 12px;
+  background-color: rgb(26, 31, 29, 0.5);
+  max-height: 70vh;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.history-header {
+  top: 0%;
+}
+
+.search-nd-del {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #76c0ae;
+  outline: 1.2px solid #417a6c;
+  border-radius: 0.25rem;
+  background-color: rgb(119, 192, 174, 0.3);
+  color: #c2e9e0;
+  font-size: 1.2rem;
+}
+
+input::placeholder {
+  color: #97e7d3;
+}
+
+button {
+  padding: 0.5rem;
+  border: 1px solid #76c0ae;
+  border-radius: 0.25rem;
+  background-color: #83e6c0;
+  color: #1a1f1d;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #aaf1d6;
+}
+
+button:active {
+  opacity: 75%;
+}
+
+.listile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(65, 122, 108, 0.3);
+  padding: 20px;
+  border-radius: 0 16px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+table {
+    max-width: 50rem;
+    margin: 2rem auto;
+    padding: 1rem;
+    table-layout: fixed;
+    border-spacing: 1rem;
+    text-align: right;
+  }
+  
+  table thead {
+    font-size: 0.7rem;
+    color: #83e6c0;
+  }
+  
+  table tbody {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 0.85rem;
+    color: #c2e9e0;
+  }
+  
